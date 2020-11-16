@@ -1,1 +1,1 @@
-### Put your posters and spons strip here
+### Put your posters here

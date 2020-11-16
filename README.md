@@ -14,9 +14,8 @@ pip install -r requirements.txt
 ```
 
 ### Getting Started
-- Add the Poster and Spons Strip in the Assets folder
+- Add the Posters in the Assets folder
+- Add the both the spons strips in SponsStrips folder in Assets
+- Name the Spons Strips `spons-strip-1.png` and `spons-strip-2.png`
 - Run the index.py file
-- Enter the Name of the Poster (with extension)
-- Enter the Name of the Spons Strip image (with extension)
-- Enter the Name of Final Poster you which has spons strip attached to the poster (with extension)
-- You can find the Final poster in the Final Folder
+- You can find the Final posters in the Final Folder
