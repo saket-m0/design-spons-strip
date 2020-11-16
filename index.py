@@ -1,22 +1,18 @@
 import cv2
 import os
+import random
 
 
 def makeFileName(file):
     filename = file[:-4] + ' final.png'
     return filename
 
-def attachSponsStrip(array):
-    spons_strip_1 = cv2.imread('Assets/SponsStrips/spons-strip-1.png')
-    spons_strip_2 = cv2.imread('Assets/SponsStrips/spons-strip-2.png')
 
-    for i, file in enumerate(array):
+def attachSponsStrip(posters, spons_strips):
+    for i, file in enumerate(posters):
         poster = cv2.imread('Assets/' + file)
-        
-        if (i % 2 == 0):
-            final = cv2.vconcat([ResizeImage(poster, 1000), ResizeImage(spons_strip_2, 1000)])
-        else:
-            final = cv2.vconcat([ResizeImage(poster, 1000), ResizeImage(spons_strip_1, 1000)])
+        spons_strip = cv2.imread('Assets/SponsStrips/' + random.choice(spons_strips))
+        final = cv2.vconcat([ResizeImage(poster, 1000), ResizeImage(spons_strip, 1000)])
 
         SaveImage(final, makeFileName(file))
 
@@ -40,9 +36,14 @@ def SaveImage(image, name):
     cv2.imwrite('Final/' + name, image)
 
 
-posters = []
-for file in os.listdir('Assets/'):
-    if file.endswith('.png'):
-        posters.append(file)
+def scanFolder(path):
+    array = []
+    for file in os.listdir(path):
+        if file.endswith('.png'):
+            array.append(file)
 
-attachSponsStrip(posters)
+    return array
+
+posters = scanFolder('Assets/')
+spons_strips = scanFolder('Assets/SponsStrips/')
+attachSponsStrip(posters, spons_strips)
